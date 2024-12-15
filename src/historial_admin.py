@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Ruta del archivo CSV dentro de la carpeta 'src'
-historial_partidas = os.path.join("src", "historial_partidas.csv")
+historial_partidas = os.path.join("src", "data", "historial_partidas.csv")
 
 
 # Función para guardar el historial
