@@ -2,99 +2,99 @@ import random
 from enum import IntEnum
 
 
+# Enumeración para las acciones posibles de la partida
 class GameAction(IntEnum):
+    Piedra = 0
+    Papel = 1
+    Tijeras = 2
 
-    Rock = 0
-    Paper = 1
-    Scissors = 2
-
-
+# Enumeración para los resultados posibles de la partida (Victoria, Derrota, Empate)
 class GameResult(IntEnum):
     Victory = 0
     Defeat = 1
     Tie = 2
 
 
-Victories = {
-    GameAction.Rock: GameAction.Paper,
-    GameAction.Paper: GameAction.Scissors,
-    GameAction.Scissors: GameAction.Rock
-}
-
+# Función para evaluar el resultado de la partida
 def assess_game(user_action, computer_action):
 
-    game_result = None
+    game_resultado = None
 
+    # Misma elección
     if user_action == computer_action:
-        print(f"User and computer picked {user_action.name}. Draw game!")
-        game_result = GameResult.Tie
+        print(f"El jugador y la computadora eligieron {user_action.name}. Es empate!")
+        game_resultado = GameResult.Tie
 
-    # You picked Rock
-    elif user_action == GameAction.Rock:
-        if computer_action == GameAction.Scissors:
-            print("Rock smashes scissors. You won!")
-            game_result = GameResult.Victory
+    # Escoges Piedra
+    elif user_action == GameAction.Piedra:
+        if computer_action == GameAction.Tijeras:
+            print("Piedra rompe Tijeras. Tú ganas!")
+            game_resultado = GameResult.Victory
         else:
-            print("Paper covers rock. You lost!")
-            game_result = GameResult.Defeat
+            print("Papel cubre Piedra. Tú pierdes!")
+            game_resultado = GameResult.Defeat
 
-    # You picked Paper
-    elif user_action == GameAction.Paper:
-        if computer_action == GameAction.Rock:
-            print("Paper covers rock. You won!")
-            game_result = GameResult.Victory
+    # Escoges Papel
+    elif user_action == GameAction.Papel:
+        if computer_action == GameAction.Piedra:
+            print("Papel cubre Piedra. Tú ganas!")
+            game_resultado = GameResult.Victory
         else:
-            print("Scissors cuts paper. You lost!")
-            game_result = GameResult.Defeat
+            print("Tijeras cortan Papel. Tú pierdes!")
+            game_resultado = GameResult.Defeat
 
-    # You picked Scissors
-    elif user_action == GameAction.Scissors:
-        if computer_action == GameAction.Rock:
-            print("Rock smashes scissors. You lost!")
-            game_result = GameResult.Defeat
+    # Escoges Tijeras
+    elif user_action == GameAction.Tijeras:
+        if computer_action == GameAction.Piedra:
+            print("Piedra rompe Tijeras. Tú pierdes!")
+            game_resultado = GameResult.Defeat
         else:
-            print("Scissors cuts paper. You won!")
-            game_result = GameResult.Victory
+            print("Tijeras cortan Papel. Tú ganas!")
+            game_resultado = GameResult.Victory
 
-    return game_result
+    return game_resultado
 
 
 def get_computer_action():
     computer_selection = random.randint(0, len(GameAction) - 1)
     computer_action = GameAction(computer_selection)
-    print(f"Computer picked {computer_action.name}.")
+    print(f"\nLa computadora eligió {computer_action.name}.")
 
     return computer_action
 
-
 def get_user_action():
-    # Scalable to more options (beyond rock, paper and scissors...)
+    # Scalable to more options (beyond Piedra, Papel and Tijeras...)
     game_choices = [f"{game_action.name}[{game_action.value}]" for game_action in GameAction]
     game_choices_str = ", ".join(game_choices)
-    user_selection = int(input(f"\nPick a choice ({game_choices_str}): "))
+    
+    user_selection = int(input(f"\nElige una acción ({game_choices_str}): "))
     user_action = GameAction(user_selection)
 
-    return user_action
+    return user_action   
 
 
+# Función para preguntar al usuario si le gustaría jugar otra partida o varias
 def play_another_round():
-    another_round = input("\nAnother round? (y/n): ")
+    another_round = input("\n¿Jugar otra ronda? (y/n): ")
+    if another_round.lower() == 'y':
+        print("------------------------------------------------------------------------")
     return another_round.lower() == 'y'
 
 
 def main():
 
+    print("\n¡Bienvenido a Piedra, Papel o Tijera!")
+
     while True:
         try:
             user_action = get_user_action()
         except ValueError:
-            range_str = f"[0, {len(GameAction) - 1}]"
-            print(f"Invalid selection. Pick a choice in range {range_str}!")
+            print(f"Selección inválida. Escoge una acción dentro del rango [0, 1 o 2]!")
             continue
 
         computer_action = get_computer_action()
         assess_game(user_action, computer_action)
-
+        
         if not play_another_round():
             break
 
