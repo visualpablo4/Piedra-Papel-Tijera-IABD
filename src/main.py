@@ -1,5 +1,6 @@
 import random
 from enum import IntEnum
+from historial_admin import guardar_historial, cargar_historial
 
 
 # Enumeración para las acciones posibles de la partida
@@ -84,6 +85,9 @@ def play_another_round():
 def main():
 
     print("\n¡Bienvenido a Piedra, Papel o Tijera!")
+    
+    # Loguearse para que quede registrado en el historial.
+    player_name = input("Introduce tu nombre: ")
 
     while True:
         try:
@@ -93,7 +97,14 @@ def main():
             continue
 
         computer_action = get_computer_action()
-        assess_game(user_action, computer_action)
+        resultado = assess_game(user_action, computer_action)
+
+        # Guardar los datos de la partida en el historial
+        guardar_historial(player_name, user_action.name, computer_action.name, resultado)
+
+        # Mostrar las últimas partidas del historial
+        print("\n--- Últimas partidas ---")
+        print(cargar_historial().tail())
         
         if not play_another_round():
             break
