@@ -95,3 +95,13 @@ visualpruebas,Piedra,Piedra,Empate
 visualpruebas,Piedra,Papel,Derrota
 visualpruebas,Papel,Piedra,Victoria
 visualpruebas,Tijeras,Piedra,Derrota
+PabloPrueba,Piedra,Piedra,Empate
+PabloPrueba,Papel,Papel,Empate
+PabloPrueba,Tijeras,Tijeras,Empate
+PabloPrueba,Tijeras,Papel,Victoria
+PabloPrueba,Papel,Piedra,Victoria
+PabloPrueba,Piedra,Papel,Derrota
+PabloPrueba,Papel,Papel,Empate
+PabloPrueba,Piedra,Tijeras,Victoria
+PabloPrueba,Tijeras,Papel,Victoria
+PabloPrueba,Piedra,Tijeras,Victoria

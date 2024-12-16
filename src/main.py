@@ -113,9 +113,7 @@ def get_user_action():
 
 
 def elegir_duracion_partida():
-    """
-    Función para decidir la duración de la partida
-    """
+    # Función para decidir la duración de la partida
     print("\nEscoge la duración de la partida:\n 1. Una sola ronda\n 2. Hasta que uno llegue a 3 victorias\n 3. Hasta que uno llegue a 5 victorias")
 
     while True:
@@ -129,71 +127,80 @@ def elegir_duracion_partida():
             print("Entrada inválida. Introduce un número (1, 2 o 3).")
 
 
+def gestionar_partida(player_name, duracion):
+    # Flujo del juego
 
-# Función para preguntar al usuario si le gustaría jugar otra partida o varias
+    # Inicializar variables para contar victorias y rondas
+    victorias_jugador = 0
+    victorias_computadora = 0
+    rondas_jugadas = 0
+
+    # Definir objetivo de victorias según la duración seleccionada
+    if duracion == 1:
+        objetivo_victorias = 1
+    elif duracion == 2:
+        objetivo_victorias = 3
+    else:
+        objetivo_victorias = 5
+
+    while victorias_jugador < objetivo_victorias and victorias_computadora < objetivo_victorias:
+        rondas_jugadas += 1
+        print(f"\n--- Ronda {rondas_jugadas} ---")
+
+        try:
+            user_action = get_user_action()
+        except ValueError: # Manejo de errores
+            print(f"Selección inválida. Escoge una acción dentro del rango [0, 1 o 2]!")
+            continue
+
+        computer_action = get_computer_action(player_name)
+        resultado = assess_game(user_action, computer_action)
+
+        # Guardar los datos de la partida en el historial
+        guardar_historial(player_name, user_action.name, computer_action.name, resultado)
+
+        # Actualizar victorias
+        if resultado == GameResult.Victory:
+            victorias_jugador += 1
+        elif resultado == GameResult.Defeat:
+            victorias_computadora += 1
+
+        # Mostrar el marcador
+        print(f"\nMarcador --> {player_name} {victorias_jugador} - {victorias_computadora} Computadora ")
+
+    return victorias_jugador, victorias_computadora
+
+
+def mostrar_resultado_final(victorias_jugador, victorias_computadora, player_name):
+    # Final de la partida
+    if victorias_jugador > victorias_computadora:
+        print(f"\n¡Felicidades {player_name}! ¡Ganaste la partida con {victorias_jugador} victorias!")
+    else:
+        print(f"\nLa computadora ganó la partida. Resultado: {victorias_jugador} - {victorias_computadora}. ¡Mejor suerte la próxima vez!")
+
+
 def play_another_round():
+    # Función para preguntar al usuario si le gustaría jugar otra partida
     another_round = input("\n¿Jugar otra partida? (y/n): ")
     if another_round.lower() == 'y':
         print("------------------------------------------------------------------------")
     return another_round.lower() == 'y'
 
 
+
 def main():
 
     print("\n¡Bienvenido a Piedra, Papel o Tijera!")
-        
-    # Loguearse para que quede registrado en el historial.
-    player_name = input("Introduce tu nombre: ")
-
-
+    
     while True:
-        # Elegir la duración de la partida
+        # Loguearse para que quede registrado en el historial.
+        player_name = input("Introduce tu nombre: ")
+
         duracion = elegir_duracion_partida()
 
-        # Inicializar variables para contar victorias y rondas
-        victorias_jugador = 0
-        victorias_computadora = 0
-        rondas_jugadas = 0
+        victorias_jugador, victorias_computadora = gestionar_partida(player_name, duracion)
 
-        # Definir objetivo de victorias según la duración seleccionada
-        if duracion == 1:
-            objetivo_victorias = 1
-        elif duracion == 2:
-            objetivo_victorias = 3
-        else:
-            objetivo_victorias = 5
-
-        while victorias_jugador < objetivo_victorias and victorias_computadora < objetivo_victorias:
-            rondas_jugadas += 1
-            print(f"\n--- Ronda {rondas_jugadas} ---")
-
-
-            try:
-                user_action = get_user_action()
-            except ValueError:
-                print(f"Selección inválida. Escoge una acción dentro del rango [0, 1 o 2]!")
-                continue
-
-            computer_action = get_computer_action(player_name)
-            resultado = assess_game(user_action, computer_action)
-
-            # Guardar los datos de la partida en el historial
-            guardar_historial(player_name, user_action.name, computer_action.name, resultado)
-
-            # Actualizar victorias
-            if resultado == GameResult.Victory:
-                victorias_jugador += 1
-            elif resultado == GameResult.Defeat:
-                victorias_computadora += 1
-
-            # Mostrar el marcador
-            print(f"\nMarcador --> {player_name} {victorias_jugador} - {victorias_computadora} Computadora ")
-
-        # Final de la partida
-        if victorias_jugador > victorias_computadora:
-            print(f"\n¡Felicidades {player_name}! ¡Ganaste la partida con {victorias_jugador} victorias!")
-        else:
-            print(f"\nLa computadora ganó la partida. ¡Mejor suerte la próxima vez!")
+        mostrar_resultado_final(victorias_jugador, victorias_computadora, player_name)
 
         # Preguntar si quiere jugar otra partida
         if not play_another_round():
