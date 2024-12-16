@@ -65,3 +65,33 @@ Carmen,Tijeras,Tijeras,Empate
 Carmen,Piedra,Papel,Derrota
 Carmen,Tijeras,Papel,Victoria
 Carmen,Tijeras,Piedra,Derrota
+Prueba Jugador Nuevo,Piedra,Piedra,Empate
+Prueba Jugador Nuevo,Tijeras,Piedra,Derrota
+Prueba Jugador Nuevo,Tijeras,Papel,Victoria
+Prueba Jugador Nuevo,Papel,Piedra,Victoria
+Prueba Jugador Nuevo,Papel,Papel,Empate
+Prueba Jugador Nuevo,Piedra,Papel,Derrota
+Prueba Jugador Nuevo,Papel,Tijeras,Derrota
+Prueba Jugador Nuevo,Piedra,Tijeras,Victoria
+Prueba Jugador Nuevo,Tijeras,Papel,Victoria
+Pablo,Piedra,Piedra,Empate
+Pablo,Papel,Papel,Empate
+Pablo,Piedra,Papel,Derrota
+PruebaRondas,Piedra,Tijeras,Victoria
+PruebaRondas,Piedra,Papel,Derrota
+PruebaRondas,Tijeras,Papel,Victoria
+PruebaRondas,Papel,Papel,Empate
+PruebaRondas,Papel,Papel,Empate
+PruebaRondas,Papel,Papel,Empate
+PruebaRondas,Papel,Tijeras,Derrota
+PruebaRondas,Papel,Tijeras,Derrota
+visualpruebas,Tijeras,Tijeras,Empate
+visualpruebas,Tijeras,Tijeras,Empate
+visualpruebas,Papel,Tijeras,Derrota
+visualpruebas,Piedra,Tijeras,Victoria
+visualpruebas,Tijeras,Tijeras,Empate
+visualpruebas,Papel,Tijeras,Derrota
+visualpruebas,Piedra,Piedra,Empate
+visualpruebas,Piedra,Papel,Derrota
+visualpruebas,Papel,Piedra,Victoria
+visualpruebas,Tijeras,Piedra,Derrota

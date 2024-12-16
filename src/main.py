@@ -103,20 +103,36 @@ def get_computer_action(nombre_jugador):
 
 
 def get_user_action():
-    # Scalable to more options (beyond Piedra, Papel and Tijeras...)
     game_choices = [f"{game_action.name}[{game_action.value}]" for game_action in GameAction]
     game_choices_str = ", ".join(game_choices)
     
     user_selection = int(input(f"\nElige una acción ({game_choices_str}): "))
-    #print(f"El jugador ha elegido {user_selection}")
     user_action = GameAction(user_selection)
 
     return user_action   
 
 
+def elegir_duracion_partida():
+    """
+    Función para decidir la duración de la partida
+    """
+    print("\nEscoge la duración de la partida:\n 1. Una sola ronda\n 2. Hasta que uno llegue a 3 victorias\n 3. Hasta que uno llegue a 5 victorias")
+
+    while True:
+        try:
+            opcion = int(input("Introduce tu elección (1, 2 o 3): "))
+            if opcion in [1, 2, 3]:
+                return opcion
+            else:
+                print("Por favor, selecciona una opción válida (1, 2 o 3).")
+        except ValueError:
+            print("Entrada inválida. Introduce un número (1, 2 o 3).")
+
+
+
 # Función para preguntar al usuario si le gustaría jugar otra partida o varias
 def play_another_round():
-    another_round = input("\n¿Jugar otra ronda? (y/n): ")
+    another_round = input("\n¿Jugar otra partida? (y/n): ")
     if another_round.lower() == 'y':
         print("------------------------------------------------------------------------")
     return another_round.lower() == 'y'
@@ -125,31 +141,71 @@ def play_another_round():
 def main():
 
     print("\n¡Bienvenido a Piedra, Papel o Tijera!")
-    
+        
     # Loguearse para que quede registrado en el historial.
     player_name = input("Introduce tu nombre: ")
 
+
     while True:
-        try:
-            user_action = get_user_action()
-        except ValueError:
-            print(f"Selección inválida. Escoge una acción dentro del rango [0, 1 o 2]!")
-            continue
+        # Elegir la duración de la partida
+        duracion = elegir_duracion_partida()
 
-        computer_action = get_computer_action(player_name)
-        resultado = assess_game(user_action, computer_action)
+        # Inicializar variables para contar victorias y rondas
+        victorias_jugador = 0
+        victorias_computadora = 0
+        rondas_jugadas = 0
 
-        # Guardar los datos de la partida en el historial
-        guardar_historial(player_name, user_action.name, computer_action.name, resultado)
+        # Definir objetivo de victorias según la duración seleccionada
+        if duracion == 1:
+            objetivo_victorias = 1
+        elif duracion == 2:
+            objetivo_victorias = 3
+        else:
+            objetivo_victorias = 5
 
-        '''
+        while victorias_jugador < objetivo_victorias and victorias_computadora < objetivo_victorias:
+            rondas_jugadas += 1
+            print(f"\n--- Ronda {rondas_jugadas} ---")
+
+
+            try:
+                user_action = get_user_action()
+            except ValueError:
+                print(f"Selección inválida. Escoge una acción dentro del rango [0, 1 o 2]!")
+                continue
+
+            computer_action = get_computer_action(player_name)
+            resultado = assess_game(user_action, computer_action)
+
+            # Guardar los datos de la partida en el historial
+            guardar_historial(player_name, user_action.name, computer_action.name, resultado)
+
+            # Actualizar victorias
+            if resultado == GameResult.Victory:
+                victorias_jugador += 1
+            elif resultado == GameResult.Defeat:
+                victorias_computadora += 1
+
+            # Mostrar el marcador
+            print(f"\nMarcador --> {player_name} {victorias_jugador} - {victorias_computadora} Computadora ")
+
+        # Final de la partida
+        if victorias_jugador > victorias_computadora:
+            print(f"\n¡Felicidades {player_name}! ¡Ganaste la partida con {victorias_jugador} victorias!")
+        else:
+            print(f"\nLa computadora ganó la partida. ¡Mejor suerte la próxima vez!")
+
+        # Preguntar si quiere jugar otra partida
+        if not play_another_round():
+            print(f"¡Gracias por jugar {player_name}! ¡Hasta la próxima!")
+            break
+
+    '''
         # Mostrar la última partida del historial
         print("\n--- Última partida ---")
         print(cargar_historial().tail(1).to_string(index=False))
         '''
 
-        #if not play_another_round():
-        #    break
 
 
 if __name__ == "__main__":

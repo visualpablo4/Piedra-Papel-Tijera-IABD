@@ -2,7 +2,6 @@
 
 ## IES de Teis - Curso de especialización en Inteligencia Artificial y Big Data
 
----
 
 ### Información
 Este proyecto esta hecho por el alumno: **Pablo Conde Soto**
