@@ -6,11 +6,13 @@ IES de Teis - Curso de especialización en Inteligencia Artificial y Big Data
 ### Información
 Este proyecto esta hecho por el alumno: **Pablo Conde Soto**
 Durante el proyecto me referiré al juego con el nombre de RPS (por sus siglas en inglés, Rock, Paper and Scissors)
+==================================================================================================================
 
 ### ¿En qué consiste el proyecto?
 Este proyecto es una práctica del Curso de Especialización de Inteligencia Artificial y Big Data.
 Consiste en la creación de un agente inteligente para jugar al juego: Piedra, papel y tijera.
 El juego será CPU vs Humano.
+==================================================================================================================
 
 ### Especificación del entorno de trabajo
 | Entorno de trabajo | Observable | Determinista | Episódico | Estático | Discreto | Conocido | Agentes |
@@ -37,3 +39,4 @@ Se trata de un entorno **conocido** dado que ambos agentes conocen y entienden l
 
 #### Agente individual VS Multiagente
 Se trata de un entorno de un sistema **multiagente competitivo** dado que hay dos agentes interactuando (la computadora y el jugador humano en este caso) y son éstos los cuales toman las decisiones que afectan directamente al resultado de cada ronda. Es de tipo claramente competitivo ya que los dos agentes compiten por ganar y no hay ningún tipo de cooperación en este juego.
+==================================================================================================================
