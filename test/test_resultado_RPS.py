@@ -2,7 +2,7 @@
 import sys
 import os
 
-from main import GameAction, GameResult, assess_game
+from src.main import GameAction, GameResult, assess_game
 
 # Tenía un problema al ejecutar pytest y no conseguía solucionarlo, pidiendo ayuda a chatGPT ya que no era capaz de solucionarlo, 
 # al meterle esta línea y luego instalar un paquete en el entorno virtual se fueron los errores.

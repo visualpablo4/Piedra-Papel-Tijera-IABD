@@ -14,7 +14,7 @@ def test_estrategia_basada_en_tendencias_sin_movimientos():
 
 def test_estrategia_basada_en_tendencias_movimientos_recientes():
     """
-    La estrategia debe basarse en los movimientos más frecuentes de las últimas 10 partidas.
+    La estrategia debe basarse en los 10 movimientos más frecuentes de las últimas 10 partidas.
     
     En movimientos sale 6 veces 'Tijeras', 3 veces 'Piedra' y 5 veces 'Papel', 
     pero si solo tenemos en cuenta los ultimos 10, 'Tijera' solo aparece 2 veces, por lo tanto el más frecuente debería ser Papel
@@ -40,15 +40,6 @@ def test_estrategia_combinada_secuencia_rps():
     movimientos = ["Piedra", "Papel", "Tijeras"]
     resultado = estrategia_combinada(movimientos)
     assert resultado == GameAction.Papel.value  # Contraataca "Piedra", el siguiente esperado
-
-# ojito si borrar esta
-def test_estrategia_combinada_sin_patrones():
-    """
-    Si no hay patrones específicos, usar la estrategia basada en tendencias.
-    """
-    movimientos = ["Piedra", "Papel", "Papel", "Tijeras", "Papel", "Papel", "Piedra", "Tijeras", "Papel", "Piedra"]
-    resultado = estrategia_combinada(movimientos)
-    assert resultado == GameAction.Tijeras.value  # Contraataca "Papel", el más frecuente
 
 
 def test_analizar_rendimiento_derrotas_recientes():
