@@ -63,6 +63,7 @@ def estrategia_combinada(movimientos_jugador):
     # Si no hay patrones específicos, aplicar la estrategia principal
     return estrategia_basada_en_tendencias(movimientos_jugador)
 
+
 def analizar_rendimiento(historial_jugador):
     """
     Analiza el rendimiento reciente de la computadora contra el jugador.
@@ -70,5 +71,5 @@ def analizar_rendimiento(historial_jugador):
     introducimos más aleatoriedad
     """
     ultimos_resultados = historial_jugador["Resultado"].tail(3).tolist()
-    derrotas = ultimos_resultados.count("Victoria")
-    return derrotas >= 2 # Si perdió al menos 2 de las últimas 3 rondas, devuelve True
+    derrotas_computadora = ultimos_resultados.count("Victoria")
+    return derrotas_computadora >= 2 # Si perdió al menos 2 de las últimas 3 rondas, devuelve True

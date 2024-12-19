@@ -207,13 +207,6 @@ def main():
             print(f"¡Gracias por jugar {player_name}! ¡Hasta la próxima!")
             break
 
-    '''
-        # Mostrar la última partida del historial
-        print("\n--- Última partida ---")
-        print(cargar_historial().tail(1).to_string(index=False))
-        '''
-
-
 
 if __name__ == "__main__":
     main()
