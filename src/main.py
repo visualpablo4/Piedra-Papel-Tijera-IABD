@@ -86,12 +86,12 @@ def get_computer_action(nombre_jugador):
 
     # Estrategia adaptativa: Revisar rendimiento reciente
     if len(historial_jugador) >= 3 and analizar_rendimiento(historial_jugador):
-        print("Computadora ha perdido las últimas dos rondas. Introduciendo más aleatoriedad.")
+        #print("Computadora ha perdido las últimas dos rondas. Introduciendo más aleatoriedad.")
         return GameAction(random.randint(0, 2))
 
     # Introducir aleatoriedad: 20% de probabilidad de hacer un movimiento aleatorio en cualquier jugada
     if random.random() < 0.2:
-        print("Movimiento aleatorio para evitar ser predecible.")
+        #print("Movimiento aleatorio para evitar ser predecible.")
         return GameAction(random.randint(0, 2))
 
     """

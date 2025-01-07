@@ -31,7 +31,7 @@ def estrategia_basada_en_tendencias(movimientos):
     # Contar la frecuencia de los movimientos
     contador = Counter(movimientos_int)
     movimiento_frecuente = max(contador, key=contador.get)  # Movimiento más frecuente
-    print(f"La estrategia basada en tendencias: movimiento más frecuente es '{GameAction(movimiento_frecuente).name}'.")
+    #print(f"La estrategia basada en tendencias: movimiento más frecuente es '{GameAction(movimiento_frecuente).name}'.")
 
     # Definir contraataque según el movimiento más frecuente
     contraataque = {
@@ -60,12 +60,11 @@ def estrategia_combinada(movimientos_jugador):
         # Patrón 1: Tres movimientos repetidos
         if movimientos_int[-1] == movimientos_int[-2] == movimientos_int[-3]:
             movimiento_repetido = movimientos_int[-1]
-            print("Patrón detectado: tres movimientos repetidos.")
+            #print("Patrón detectado: tres movimientos repetidos.")
             return (movimiento_repetido + 1) % 5  # Contraataca el movimiento repetido
 
-                # Patrón 2: Secuencia completa 'Piedra, Papel, Tijera, Lagarto, Spock'
-        if movimientos_int[-5:] == [0, 1, 2, 3, 4]:  # Secuencia completa detectada
-            print("Patrón detectado: secuencia 'Piedra, Papel, Tijera, Lagarto, Spock'.")
+        if movimientos_int[-5:] == [0, 1, 2, 3, 4]:  # Secuencia completa detectada 'Piedra, Papel, Tijera, Lagarto, Spock'
+            #print("Patrón detectado: secuencia 'Piedra, Papel, Tijera, Lagarto, Spock'.")
             return 1  # Contraataca con 'Papel' (siguiente esperado sería 'Piedra')
 
     # Si no hay patrones específicos, aplicar la estrategia principal
