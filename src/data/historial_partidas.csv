@@ -235,3 +235,18 @@ Berto,Tijeras,Papel,Victoria
 Berto,Papel,Papel,Empate
 Berto,Tijeras,Tijeras,Empate
 Berto,Papel,Tijeras,Derrota
+Pablo,Papel,Papel,Empate
+Pablo,Piedra,Papel,Derrota
+Pablo,Papel,Papel,Empate
+Pablo,Tijeras,Papel,Victoria
+Pablo,Piedra,Papel,Derrota
+Pablo,Papel,Tijeras,Derrota
+Pablo,Tijeras,Papel,Victoria
+Pablo,Piedra,Papel,Derrota
+Pablo,Papel,Tijeras,Derrota
+RPSLS Prueba,Lagarto,Tijeras,Derrota
+RPSLS Prueba,Spock,Piedra,Victoria
+RPSLS Prueba,Spock,Tijeras,Victoria
+RPSLS Prueba,Lagarto,Lagarto,Empate
+RPSLS Prueba,Lagarto,Piedra,Derrota
+RPSLS Prueba,Lagarto,Tijeras,Derrota
