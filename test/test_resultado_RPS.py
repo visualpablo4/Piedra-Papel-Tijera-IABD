@@ -2,7 +2,7 @@
 import sys
 import os
 
-from src.main import GameAction, GameResult, assess_game
+from src.RPSLS import GameAction, GameResult, assess_game
 
 # Tenía un problema al ejecutar pytest y no conseguía solucionarlo, pidiendo ayuda a chatGPT ya que no era capaz de solucionarlo, 
 # al meterle esta línea y luego instalar un paquete en el entorno virtual se fueron los errores.
@@ -28,7 +28,7 @@ def test_Empate():
 
 def test_Piedra_loses():
     '''
-    Piedra pierde con Papel
+    Piedra pierde con Papel y Spock
     '''
     assert GameResult.Victory == assess_game(
         user_action=GameAction.Papel,
@@ -41,7 +41,7 @@ def test_Piedra_loses():
 
 def test_Piedra_wins():
     '''
-    Piedra gana a Tijeras
+    Piedra gana a Tijeras y Lagarto
     '''
     assert GameResult.Defeat == assess_game(
         user_action=GameAction.Tijeras,
@@ -54,7 +54,7 @@ def test_Piedra_wins():
 
 def test_Papel_loses():
     '''
-    Papel pierde con Tijeras
+    Papel pierde con Tijeras y Lagarto
     '''
     assert GameResult.Victory == assess_game(
         user_action=GameAction.Tijeras,
@@ -67,7 +67,7 @@ def test_Papel_loses():
 
 def test_Papel_wins():
     '''
-    Papel gana a Piedra
+    Papel gana a Piedra y Spock
     '''
     assert GameResult.Defeat == assess_game(
         user_action=GameAction.Piedra,
@@ -80,7 +80,7 @@ def test_Papel_wins():
 
 def test_Tijeras_loses():
     '''
-    Tijeras pierde con Piedra 
+    Tijeras pierde con Piedra y Spock
     '''
     assert GameResult.Victory == assess_game(
         user_action=GameAction.Piedra,
@@ -93,7 +93,7 @@ def test_Tijeras_loses():
 
 def test_Tijeras_wins():
     '''
-    Tijeras gana a Papel 
+    Tijeras gana a Papel y Lagarto
     '''
     assert GameResult.Defeat == assess_game(
         user_action=GameAction.Papel,
