@@ -15,18 +15,15 @@ def test_Empate():
     """
     assert GameResult.Tie == assess_game(
         user_action = GameAction.Papel,
-        computer_action = GameAction.Papel
-    )
+        computer_action = GameAction.Papel)
 
     assert GameResult.Tie == assess_game(
         user_action = GameAction.Papel,
-        computer_action = GameAction.Papel
-    )
+        computer_action = GameAction.Papel)
 
     assert GameResult.Tie == assess_game(
         user_action = GameAction.Papel,
-        computer_action = GameAction.Papel
-    )
+        computer_action = GameAction.Papel)
 
 
 def test_Piedra_loses():
@@ -36,6 +33,10 @@ def test_Piedra_loses():
     assert GameResult.Victory == assess_game(
         user_action=GameAction.Papel,
         computer_action=GameAction.Piedra)
+    
+    assert GameResult.Defeat == assess_game(
+        user_action=GameAction.Piedra,
+        computer_action=GameAction.Spock)
 
 
 def test_Piedra_wins():
@@ -45,6 +46,10 @@ def test_Piedra_wins():
     assert GameResult.Defeat == assess_game(
         user_action=GameAction.Tijeras,
         computer_action=GameAction.Piedra)
+    
+    assert GameResult.Victory == assess_game(
+        user_action=GameAction.Piedra,
+        computer_action=GameAction.Lagarto)
 
 
 def test_Papel_loses():
@@ -54,6 +59,10 @@ def test_Papel_loses():
     assert GameResult.Victory == assess_game(
         user_action=GameAction.Tijeras,
         computer_action=GameAction.Papel)
+    
+    assert GameResult.Defeat == assess_game(
+        user_action=GameAction.Papel,
+        computer_action=GameAction.Lagarto)
 
 
 def test_Papel_wins():
@@ -63,6 +72,10 @@ def test_Papel_wins():
     assert GameResult.Defeat == assess_game(
         user_action=GameAction.Piedra,
         computer_action=GameAction.Papel)
+    
+    assert GameResult.Victory == assess_game(
+        user_action=GameAction.Papel,
+        computer_action=GameAction.Spock)
 
 
 def test_Tijeras_loses():
@@ -72,6 +85,10 @@ def test_Tijeras_loses():
     assert GameResult.Victory == assess_game(
         user_action=GameAction.Piedra,
         computer_action=GameAction.Tijeras)
+    
+    assert GameResult.Defeat == assess_game(
+        user_action=GameAction.Tijeras,
+        computer_action=GameAction.Spock)
 
 
 def test_Tijeras_wins():
@@ -81,3 +98,60 @@ def test_Tijeras_wins():
     assert GameResult.Defeat == assess_game(
         user_action=GameAction.Papel,
         computer_action=GameAction.Tijeras)
+    
+    assert GameResult.Victory == assess_game(
+        user_action=GameAction.Tijeras,
+        computer_action=GameAction.Lagarto)
+    
+    
+def test_Lagarto_wins():
+    """
+    Lagarto gana a Papel y Spock
+    """
+    assert GameResult.Victory == assess_game(
+        user_action=GameAction.Lagarto,
+        computer_action=GameAction.Papel)
+    
+    assert GameResult.Victory == assess_game(
+        user_action=GameAction.Lagarto,
+        computer_action=GameAction.Spock)
+    
+
+def test_Lagarto_loses():
+    """
+    Lagarto pierde con Piedra y Tijeras
+    """
+    assert GameResult.Defeat == assess_game(
+        user_action=GameAction.Lagarto,
+        computer_action=GameAction.Piedra)
+    
+    assert GameResult.Defeat == assess_game(
+        user_action=GameAction.Lagarto,
+        computer_action=GameAction.Tijeras)
+    
+
+def test_Spock_wins():
+    """
+    Spock gana a Piedra y Tijeras
+    """
+    assert GameResult.Victory == assess_game(
+        user_action=GameAction.Spock,
+        computer_action=GameAction.Piedra)
+    
+    assert GameResult.Victory == assess_game(
+        user_action=GameAction.Spock,
+        computer_action=GameAction.Tijeras)
+    
+
+def test_Spock_loses():
+    """
+    Spock pierde con Papel y Lagarto
+    """
+    assert GameResult.Defeat == assess_game(
+        user_action=GameAction.Spock,
+        computer_action=GameAction.Papel)
+    
+    assert GameResult.Defeat == assess_game(
+        user_action=GameAction.Spock,
+        computer_action=GameAction.Lagarto)
+    
