@@ -11,8 +11,8 @@ Durante el proyecto me referiré al juego con el nombre de RPS (por sus siglas e
 
 ### ¿En qué consiste el proyecto?
 Este proyecto es una práctica del Curso de Especialización de Inteligencia Artificial y Big Data.
-Consiste en la creación de un agente inteligente para jugar al juego: Piedra, papel y tijera.
-El juego será CPU vs Humano.
+El objetivo principal es desarrollar un agente inteligente capaz de competir contra un jugador humano en el clásico juego Piedra, Papel y Tijera (RPS) y su extensión, Piedra, Papel, Tijera, Lagarto, Spock (RPSLS).
+El agente utilizará estrategias inteligentes basadas en tendencias, patrones y aleatoriedad para maximizar sus posibilidades de ganar.
 
 ---
 
@@ -85,6 +85,88 @@ Este diseño permite al agente simular un comportamiento estratégico e intelige
 
 ![Estructura del agente basado en modelos](doc/estructura_agente.png)
 
-### Fuentes
+---
+
+## Estrategias utilizadas por el agente
+
+En este proyecto, el agente implementa diferentes estrategias para adaptarse al comportamiento del jugador humano y maximizar sus posibilidades de ganar. Estas estrategias se combinan y ajustan según el historial de partidas y el comportamiento detectado del jugador. A continuación, se explican las estrategias principales:
+
+### Estrategia basada en tendencias
+La estrategia principal del agente se centra en analizar las tendencias del jugador humano en sus movimientos más recientes.  
+
+1. **Descripción**:  
+   El agente utiliza el historial de los últimos movimientos del jugador (máximo 10) para determinar cuál ha sido el movimiento más frecuente y selecciona un movimiento que lo contrarreste.  
+
+2. **Ejemplo de funcionamiento**:  
+   Si el jugador ha elegido mayoritariamente "Piedra" en las últimas partidas, el agente seleccionará "Papel" como su próximo movimiento.  
+
+3. **Función relevante**:  
+   `estrategia_basada_en_tendencias()` realiza el análisis de frecuencia y calcula el movimiento óptimo basado en los últimos datos.  
+
+---
+
+### Estrategia combinada
+El agente también implementa una estrategia secundaria que busca patrones específicos en las elecciones del jugador humano.  
+
+1. **Patrón 1: Movimientos repetidos**  
+   Si el jugador repite el mismo movimiento al menos tres veces consecutivas, el agente predice que volverá a elegir el mismo movimiento y selecciona una acción que lo contrarreste.  
+
+2. **Patrón 2: Secuencia conocida (Piedra → Papel → Tijeras → Lagarto → Spock)**  
+   El agente identifica si el jugador sigue la secuencia clásica del juego ampliado y selecciona un movimiento que contrarreste el siguiente movimiento esperado.  
+
+3. **Función relevante**:  
+   `estrategia_combinada()` detecta estos patrones y selecciona un movimiento óptimo basado en ellos.  
+
+---
+
+### Estrategia adaptativa
+Para evitar que el agente sea predecible y mejorar su rendimiento a largo plazo, se han añadido elementos de adaptabilidad:  
+
+1. **Revisión de rendimiento reciente**  
+   Si el agente ha perdido al menos 2 de las últimas 3 rondas, aumenta la probabilidad de elegir un movimiento aleatorio para romper patrones detectados por el jugador humano.  
+
+2. **Aleatoriedad intencional**  
+   En cada ronda, el agente tiene un 20% de probabilidad de realizar un movimiento completamente aleatorio, incluso si existen patrones detectables, para dificultar las estrategias del jugador.  
+
+3. **Función relevante**:  
+   `analizar_rendimiento()` evalúa el rendimiento reciente, mientras que la aleatoriedad se introduce directamente en `get_computer_action()`.  
+
+---
+
+## Casos Test
+
+El proyecto incluye casos test para garantizar el correcto funcionamiento de las principales funcionalidades del juego. Estos casos test se encuentran en la carpeta `test` y han sido desarrollados utilizando la biblioteca `pytest`. A continuación, se describen brevemente los principales aspectos evaluados:  
+
+### 1. Evaluación del resultado del juego (`test_resultado_RPS.py`)  
+Este conjunto de pruebas verifica que la función `assess_game()` determina correctamente el resultado de cada partida según las reglas del juego.  
+- **Casos evaluados**:  
+  - Empates (ej: `Piedra` vs. `Piedra`).  
+  - Victorias del jugador (ej: `Papel` vence a `Piedra`).  
+  - Derrotas del jugador (ej: `Tijeras` pierde contra `Piedra`).  
+
+### 2. Estrategias del agente (`test_estrategias.py`)  
+Estas pruebas evalúan el comportamiento de las estrategias implementadas en el agente inteligente.  
+- **Casos evaluados**:  
+  - La estrategia basada en tendencias selecciona el movimiento correcto según el historial reciente.  
+  - La estrategia combinada detecta patrones específicos en los movimientos del jugador.  
+  - La función `analizar_rendimiento()` identifica correctamente situaciones en las que el agente necesita introducir más aleatoriedad.  
+
+---
+
+## Instalación del proyecto
+
+Para instalar y poder ejecutar el proyecto solo es necesario clonar el repositorio.
+
+1. Clonar el repositorio
+
+```bash
+git clone https://github.com/visualpablo4/Piedra-Papel-Tijera-IABD.git
+```
+
+Tras clonar el repositorio para poder jugar solo deberás ejecutar el fichero ```src/main.py``` para jugar al RPS y el fichero ```src/RPSLS_main.py``` para poder jugar al RPS con la extensión del Lagarto Spock.
+
+---
+
+## Fuentes
 Russell, Peter. _ARTIFICIAL INTELLIGENCE : A Modern Approach_, Global Edition. S.L., Pearson Education Limited, 2021.
-Chat GPT --> Me he apoyado en él para: solucionar algunos errores al programar las estrategias y el historial, para obtener el movimiento que contraataca a otro con una fórmula matemática y para obtener el movimiento más frecuente con un contador.
+Chat GPT --> Me he apoyado en él para: solucionar algunos errores al programar las estrategias y el historial, para obtener el movimiento que contraataca a otro con una fórmula matemática y para obtener el movimiento más frecuente con un contador. También me ayudó a mejorar y redactar alguna parte específica del markdown.
