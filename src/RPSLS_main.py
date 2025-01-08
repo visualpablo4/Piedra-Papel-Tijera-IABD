@@ -6,7 +6,7 @@ SPOCK gana a TIJERA y a PIEDRA, pierde contra LAGARTO y PAPEL
 import random
 from enum import IntEnum
 from historial_admin import guardar_historial, cargar_historial
-from estrategias import estrategia_basada_en_tendencias, estrategia_combinada, analizar_rendimiento
+from RPSLS_estrategias import estrategia_basada_en_tendencias, estrategia_combinada, analizar_rendimiento
 
 
 # Enumeración para las acciones posibles de la partida
@@ -81,12 +81,12 @@ def get_computer_action(nombre_jugador):
 
     # Estrategia adaptativa: Revisar rendimiento reciente
     if len(historial_jugador) >= 3 and analizar_rendimiento(historial_jugador):
-        print("Computadora ha perdido las últimas dos rondas. Introduciendo más aleatoriedad.")
+        #print("Computadora ha perdido las últimas dos rondas. Introduciendo más aleatoriedad.")
         return GameAction(random.randint(0, 4))
 
     # Introducir aleatoriedad: 20% de probabilidad de hacer un movimiento aleatorio en cualquier jugada
     if random.random() < 0.2:
-        print("Movimiento aleatorio para evitar ser predecible.")
+        #print("Movimiento aleatorio para evitar ser predecible.")
         return GameAction(random.randint(0, 4))
 
     return GameAction(estrategia_base)  

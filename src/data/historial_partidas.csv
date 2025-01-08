@@ -250,3 +250,29 @@ RPSLS Prueba,Spock,Tijeras,Victoria
 RPSLS Prueba,Lagarto,Lagarto,Empate
 RPSLS Prueba,Lagarto,Piedra,Derrota
 RPSLS Prueba,Lagarto,Tijeras,Derrota
+LauraGarc,Lagarto,Papel,Victoria
+LauraGarc,Papel,Tijeras,Derrota
+LauraGarc,Papel,Tijeras,Derrota
+LauraGarc,Tijeras,Tijeras,Empate
+LauraGarc,Lagarto,Tijeras,Derrota
+Laura,Papel,Spock,Victoria
+PabloCondeSoto,Piedra,Piedra,Empate
+Fulanito,Piedra,Tijeras,Victoria
+Fulanito,Papel,Lagarto,Derrota
+Fulanito,Tijeras,Piedra,Derrota
+Fulanito,Spock,Tijeras,Victoria
+Fulanito,Piedra,Spock,Derrota
+Fulanito,Papel,Tijeras,Derrota
+Fulanito,Tijeras,Papel,Victoria
+Fulanito,Lagarto,Spock,Victoria
+Fulanito,Spock,Spock,Empate
+Fulanito,Piedra,Papel,Derrota
+Fulanito,Spock,Papel,Derrota
+Fulanito,Lagarto,Lagarto,Empate
+Fulanito,Tijeras,Lagarto,Victoria
+Fulanito,Papel,Lagarto,Derrota
+Fulanito,Tijeras,Papel,Victoria
+Fulanito,Lagarto,Spock,Victoria
+Fulanito,Tijeras,Papel,Victoria
+Fulanito,Lagarto,Lagarto,Empate
+Fulanito,Tijeras,Papel,Victoria
